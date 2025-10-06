@@ -31,9 +31,5 @@ describe('Sign Up page', () => {
     cy.get('button[type="submit"]').click();
 
     cy.contains('.nav-link', testUser.userName.toLowerCase()).should('exist');
-
-    cy.writeFile('cypress/fixtures/testUser.json', testUser).then(() =>
-      cy.fixture('testUser.json').should('deep.equal', testUser)
-    );
   });
 });
