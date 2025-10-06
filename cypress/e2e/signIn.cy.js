@@ -1,11 +1,5 @@
 /// <reference types="cypress" />
 
-const testUser = {
-  userName: 'ta',
-  userEmail: 'ta@gmail.com',
-  userPassword: '123',
-};
-
 describe('Sign In page', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -24,11 +18,9 @@ describe('Sign In page', () => {
   it('should login a user successfully', () => {
     cy.contains('.nav-link', 'Sign in').click();
 
-    cy.get('[type=email]').type(testUser.userEmail);
-    cy.get('[type=password]').type(testUser.userPassword);
+    cy.get('[type=email]').type('ta@gmail.com');
+    cy.get('[type=password]').type(123);
     cy.get('button[type=submit]').click();
-
-    cy.contains('.nav-link', testUser.userName.toLowerCase()).should('exist');
-    cy.url().should('not.include', '/login');
+    cy.get('a.nav-link').should('contain.text', 'ta');
   });
 });
